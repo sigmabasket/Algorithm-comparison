@@ -2,14 +2,14 @@ import os
 import unittest
 import json
 from unittest.mock import patch
-from time_measurer import TimeMeasurer
-from memory_measurer import MemoryMeasurer
-from data_generator import TestDataGenerator
-from algorithms import (
+from benchmark.time_measurer import TimeMeasurer
+from benchmark.memory_measurer import MemoryMeasurer
+from src.data_generator import TestDataGenerator
+from src.algorithms import (
     naive_search, kmp_search, boyer_moore_search, rabin_karp_search,
     aho_corasick_search, apostolico_crochemore_search
 )
-import time_measurer
+from benchmark import time_measurer
 import benchmark
 
 

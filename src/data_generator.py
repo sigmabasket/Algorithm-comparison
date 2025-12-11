@@ -90,6 +90,5 @@ if __name__ == "__main__":
     generator = TestDataGenerator()
     test_data = generator.generate_all_cases()
 
-    # Для проверки:
     # Лучший случай наивного алгоритма для размера 2^10
     print(test_data['naive']['best'][0])

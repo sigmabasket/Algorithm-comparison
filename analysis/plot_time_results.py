@@ -22,8 +22,8 @@ def _power_fit_curve(x: np.ndarray, y: np.ndarray) -> tuple:
     return (a, b), label
 
 
-def plot_memory_results_power_only() -> None:
-    df = pd.read_csv("results.csv", encoding="utf-8-sig")
+def plot_time_results_power_only() -> None:
+    df = pd.read_csv("../results/results.csv", encoding="utf-8-sig")
 
     plt.figure(figsize=(18, 6))
     cases = ["best", "worst", "random"]
@@ -36,7 +36,6 @@ def plot_memory_results_power_only() -> None:
         "apostolico_crochemore",
         "aho_corasick",
     ]
-
     colors = {
         "naive": "blue",
         "kmp": "green",
@@ -52,12 +51,12 @@ def plot_memory_results_power_only() -> None:
         for algo in algorithms:
             subset = df[(df["Алгоритм"] == algo) & (df["Случай"] == case)]
             if subset.empty:
-                continue                      # нет данных — пропускаем
+                continue
             subset = subset.sort_values("Размер (байт)")
 
             x = subset["Размер (байт)"].to_numpy()
-            y = subset["Память (байт)"].to_numpy()
-            yerr = subset["ΔПамять"].to_numpy()
+            y = subset["Время (сек)"].to_numpy()
+            yerr = subset["ΔВремя"].to_numpy()
 
             plt.errorbar(
                 x, y, yerr=yerr,
@@ -81,7 +80,7 @@ def plot_memory_results_power_only() -> None:
 
         plt.title(f"{case.capitalize()} случаи")
         plt.xlabel("Размер данных (байты, log)")
-        plt.ylabel("Память (байты, log)")
+        plt.ylabel("Время (сек, log)")
         plt.xscale("log")
         plt.yscale("log")
         plt.grid(True, which="both", ls=":")
@@ -97,4 +96,4 @@ def plot_memory_results_power_only() -> None:
 
 
 if __name__ == "__main__":
-    plot_memory_results_power_only()
+    plot_time_results_power_only()

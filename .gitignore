@@ -1,6 +1,6 @@
 # Результаты
 *.json
-benchmark.log
+results/benchmark.log
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

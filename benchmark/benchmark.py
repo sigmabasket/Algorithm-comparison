@@ -2,14 +2,14 @@ import argparse
 import json
 import logging
 import math
-from algorithms import *
-from data_generator import TestDataGenerator
+from src.algorithms import *
+from src.data_generator import TestDataGenerator
 from time_measurer import TimeMeasurer
 from memory_measurer import MemoryMeasurer
 from tqdm import tqdm
 
 logging.basicConfig(
-    filename="benchmark.log",
+    filename="../results/benchmark.log",
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
@@ -52,12 +52,12 @@ def get_adaptive_n_runs(size: int, min_runs=10, max_runs=101) -> int:
 def save_results(time_results, memory_results):
     try:
         print("Попытка сохранить: time_results.json")
-        with open("time_results.json", "w", encoding="utf-8") as f:
+        with open("results/time_results.json", "w", encoding="utf-8") as f:
             json.dump(time_results, f, indent=2, ensure_ascii=False)
         print("Файл сохранён: time_results.json")
 
         print("Попытка сохранить: memory_results.json")
-        with open("memory_results.json", "w", encoding="utf-8") as f:
+        with open("results/memory_results.json", "w", encoding="utf-8") as f:
             json.dump(memory_results, f, indent=2, ensure_ascii=False)
         print("Файл сохранён: memory_results.json")
 
@@ -80,13 +80,13 @@ def main():
     memory_measurer = MemoryMeasurer()
 
     try:
-        with open("time_results.json", "r", encoding="utf-8") as f:
+        with open("results/time_results.json", "r", encoding="utf-8") as f:
             time_results = json.load(f)
     except FileNotFoundError:
         time_results = {}
 
     try:
-        with open("memory_results.json", "r", encoding="utf-8") as f:
+        with open("results/memory_results.json", "r", encoding="utf-8") as f:
             memory_results = json.load(f)
     except FileNotFoundError:
         memory_results = {}
