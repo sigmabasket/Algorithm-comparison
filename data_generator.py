@@ -33,7 +33,6 @@ class TestDataGenerator:
     def _generate_best_case(self, size: int) -> Tuple[str, str]:
         pattern_length = max(100, size // 10)
         pattern = 'A' * pattern_length
-        # Паттерн в начале
         text = pattern.ljust(size, 'B')
         return text, pattern
 

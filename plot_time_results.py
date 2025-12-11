@@ -23,7 +23,6 @@ def _power_fit_curve(x: np.ndarray, y: np.ndarray) -> tuple:
 
 
 def plot_time_results_power_only() -> None:
-    # Читаем единую таблицу
     df = pd.read_csv("results.csv", encoding="utf-8-sig")
 
     plt.figure(figsize=(18, 6))
@@ -59,7 +58,6 @@ def plot_time_results_power_only() -> None:
             y = subset["Время (сек)"].to_numpy()
             yerr = subset["ΔВремя"].to_numpy()
 
-            # экспериментальные точки
             plt.errorbar(
                 x, y, yerr=yerr,
                 fmt="o",
@@ -69,7 +67,6 @@ def plot_time_results_power_only() -> None:
                 alpha=0.7,
             )
 
-            # аппроксимация степенной кривой
             if len(x) > 1:
                 (a, b), label = _power_fit_curve(x, y)
                 x_fit = np.linspace(x.min(), x.max(), 200)

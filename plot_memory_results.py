@@ -23,7 +23,6 @@ def _power_fit_curve(x: np.ndarray, y: np.ndarray) -> tuple:
 
 
 def plot_memory_results_power_only() -> None:
-    # читаем общий CSV со всеми алгоритмами
     df = pd.read_csv("results.csv", encoding="utf-8-sig")
 
     plt.figure(figsize=(18, 6))
@@ -60,7 +59,6 @@ def plot_memory_results_power_only() -> None:
             y = subset["Память (байт)"].to_numpy()
             yerr = subset["ΔПамять"].to_numpy()
 
-            # экспериментальные точки
             plt.errorbar(
                 x, y, yerr=yerr,
                 fmt="o",
@@ -70,7 +68,6 @@ def plot_memory_results_power_only() -> None:
                 alpha=0.7,
             )
 
-            # аппроксимация (оставляем прежнюю функцию)
             if len(x) > 1:
                 (a, b), label = _power_fit_curve(x, y)
                 x_fit = np.linspace(x.min(), x.max(), 200)
